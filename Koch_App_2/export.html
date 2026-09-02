@@ -1,0 +1,156 @@
+<!--
+    export.html
+    Export- und Sharing-Seite für YummyGo.
+    Entwicklerhinweis: Hier werden PDF-Export, Social Sharing und Daten-Backup angeboten.
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Rezepte exportieren - YummyGo</title><link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="accessibility.css"><script src="accessibility.js"></script>
+    <script src="sidebar.js"></script></head>
+<body>
+<!-- Skip to Content Link für Screen Reader -->
+    <a href="#main-content" class="skip-to-content">Zum Hauptinhalt springen</a>
+    
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+ <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <ul>
+            <li><a href="index.html">🏠 Startseite</a></li>
+            <li><a href="recipes.html">📖 Alle Rezepte</a></li>
+            <li><a href="add-recipe.html">➕ Rezept hinzufügen</a></li>
+            <li><a href="favorites.html">❤️ Favoriten</a></li>
+        </ul>
+        <h3 style="margin-top: 30px;">Informationen</h3>
+        <ul>
+            <li><a href="kontakt.html">📧 Kontakt</a></li>
+            <li><a href="faq.html" class="active">❓ FAQ / Hilfe</a></li>
+            <li><a href="tutorial.html">📚 Tutorial</a></li>
+        </ul>
+        <h3 style="margin-top: 30px;">Weitere Funktionen</h3>
+        <ul>
+            <li><a href="export.html">📄 Rezepte exportieren</a></li>
+            <li><a href="feedback.html">💬 Feedback</a></li>
+
+        </ul>
+        <h3 style="margin-top: 30px;">Rechtliches</h3>
+        <ul>
+            <li><a href="impressum.html">ℹ️ Impressum</a></li>
+            <li><a href="datenschutz.html">🔒 Datenschutz</a></li>
+            <li><a href="agb.html">📜 AGB</a></li>
+        </ul>
+    </aside><header>
+        <div class="header-flex">
+            <img src="images/weisses_logo.png" alt="Logo" class="logo" id="mainLogo">
+            <div class="header-center">
+                <h1>YummyGo</h1>
+                <p class="tagline">Kochen leicht gemacht – in 5 Minuten zum passenden Rezept!</p>
+            </div>
+        </div>
+    <style>
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            left: 0;
+            height: 180px;
+            margin-left: 20px;
+        }
+        .header-center {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+    </header>
+<nav><div class="container"><ul><li><a href="index.html">Startseite</a></li><li><a href="recipes.html">Alle Rezepte</a></li><li><a href="add-recipe.html">Rezept hinzufügen</a></li><li><a href="favorites.html">Favoriten</a></li></ul></div></nav>
+<main class="container" id="main-content">
+        <h2>📤 Rezepte exportieren & teilen</h2>
+        
+        <div class="export-section">
+            <h3>📄 Als PDF exportieren</h3>
+            <p>Exportiere alle deine Rezepte oder einzelne Favoriten als PDF-Datei.</p>
+            
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="exportAllRecipesAsPDF()">
+                    📥 Alle Rezepte als PDF
+                </button>
+            </div>
+        </div>
+
+        <hr style="margin: 40px 0; border: 1px solid #ddd;">
+
+        <div class="export-section">
+            <h3>📱 Auf Social Media teilen</h3>
+            <p>Teile deine Lieblingsrezepte mit Freunden und Familie!</p>
+            
+            <div id="recipe-selector">
+                <label for="recipe-select">Wähle ein Rezept zum Teilen:</label>
+                <select id="recipe-select" class="form-control">
+                    <option value="">-- Rezept auswählen --</option>
+                </select>
+            </div>
+
+            <div id="share-buttons" style="margin-top: 20px; display: none;">
+                <div class="button-group">
+                    <button class="btn btn-social facebook" onclick="shareOnFacebook()">
+                        📘 Facebook
+                    </button>
+                    <button class="btn btn-social twitter" onclick="shareOnTwitter()">
+                        🐦 Twitter / X
+                    </button>
+                    <button class="btn btn-social whatsapp" onclick="shareOnWhatsApp()">
+                        💬 WhatsApp
+                    </button>
+                    <button class="btn btn-social email" onclick="shareViaEmail()">
+                        📧 E-Mail
+                    </button>
+                    <button class="btn btn-social copy" onclick="copyRecipeLink()">
+                        🔗 Link kopieren
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <hr style="margin: 40px 0; border: 1px solid #ddd;">
+
+        <div class="export-section">
+            <h3>💾 Datenbank sichern</h3>
+            <p>Exportiere deine gesamte Rezept-Datenbank als JSON-Backup.</p>
+            
+            <div class="button-group">
+                <button class="btn" onclick="exportDatabaseAsJSON()">
+                    📦 Datenbank als JSON
+                </button>
+                <button class="btn" onclick="importDatabase()">
+                    📂 Datenbank importieren
+                </button>
+            </div>
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 YummyGo</p>
+            <p><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a> |
+                <a href="sitemap.html">Sitemap</a></p>
+        </div>
+    </footer>
+
+    <!-- jsPDF Bibliothek von CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- SQL.js für Datenbank -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="recipe-db.js"></script>
+    
+    <!-- Export & Share Funktionen -->
+    <script src="export-share.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!--
+    feedback.html
+    Feedback-Seite für YummyGo.
+    Entwicklerhinweis: Hier können Nutzer Rückmeldungen und Feature-Wünsche abgeben.
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Feedback - YummyGo</title><link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="accessibility.css"><script src="accessibility.js"></script>
+    <script src="sidebar.js"></script></head>
+<body>
+<!-- Skip to Content Link für Screen Reader -->
+    <a href="#main-content" class="skip-to-content">Zum Hauptinhalt springen</a>
+    
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+ <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <ul>
+            <li><a href="index.html">🏠 Startseite</a></li>
+            <li><a href="recipes.html">📖 Alle Rezepte</a></li>
+            <li><a href="add-recipe.html">➕ Rezept hinzufügen</a></li>
+            <li><a href="favorites.html">❤️ Favoriten</a></li>
+        </ul>
+        <h3 style="margin-top: 30px;">Informationen</h3>
+        <ul>
+            <li><a href="kontakt.html">📧 Kontakt</a></li>
+            <li><a href="faq.html" class="active">❓ FAQ / Hilfe</a></li>
+            <li><a href="tutorial.html">📚 Tutorial</a></li>
+        </ul>
+        <h3 style="margin-top: 30px;">Weitere Funktionen</h3>
+        <ul>
+            <li><a href="export.html">📄 Rezepte exportieren</a></li>
+            <li><a href="feedback.html">💬 Feedback</a></li>
+
+        </ul>
+        <h3 style="margin-top: 30px;">Rechtliches</h3>
+        <ul>
+            <li><a href="impressum.html">ℹ️ Impressum</a></li>
+            <li><a href="datenschutz.html">🔒 Datenschutz</a></li>
+            <li><a href="agb.html">📜 AGB</a></li>
+        </ul>
+    </aside>
+
+
+
+<header>
+        <div class="header-flex">
+            <img src="images/weisses_logo.png" alt="Logo" class="logo" id="mainLogo">
+            <div class="header-center">
+                <h1>YummyGo</h1>
+                <p class="tagline">Kochen leicht gemacht – in 5 Minuten zum passenden Rezept!</p>
+            </div>
+        </div>
+    <style>
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            left: 0;
+            height: 180px;
+            margin-left: 20px;
+        }
+        .header-center {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+    </header>
+<nav><div class="container"><ul><li><a href="index.html">Startseite</a></li><li><a href="recipes.html">Alle Rezepte</a></li><li><a href="add-recipe.html">Rezept hinzufügen</a></li><li><a href="favorites.html">Favoriten</a></li></ul></div></nav>
+<main class="container" id="main-content">
+        <h2>💬 Feedback & Verbesserungsvorschläge</h2>
+        <p>Deine Meinung ist uns wichtig! Teile uns mit, wie wir den YummyGo noch besser machen können.</p>
+
+        <!-- Feedback-Formular -->
+        <div class="feedback-form-section">
+            <form id="feedbackForm" class="feedback-form">
+                <div class="form-group">
+                    <label for="feedback-type">Art des Feedbacks *</label>
+                    <select id="feedback-type" name="type" required>
+                        <option value="">-- Bitte auswählen --</option>
+                        <option value="bug">🐛 Bug / Fehler melden</option>
+                        <option value="feature">💡 Feature-Wunsch</option>
+                        <option value="improvement">✨ Verbesserungsvorschlag</option>
+                        <option value="praise">👍 Lob / Kompliment</option>
+                        <option value="other">💬 Sonstiges</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-name">Dein Name (optional)</label>
+                    <input type="text" id="feedback-name" name="name" placeholder="z.B. Max Mustermann">
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-email">Deine E-Mail (optional)</label>
+                    <input type="email" id="feedback-email" name="email" placeholder="z.B. max@example.com">
+                    <small>Nur falls du eine Rückmeldung möchtest</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-subject">Betreff *</label>
+                    <input type="text" id="feedback-subject" name="subject" required placeholder="z.B. Rezept-Suche funktioniert nicht">
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-message">Deine Nachricht *</label>
+                    <textarea id="feedback-message" name="message" required rows="8" placeholder="Beschreibe dein Anliegen so detailliert wie möglich..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="feedback-privacy" required>
+                        Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie.
+                    </label>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">📨 Feedback senden</button>
+                    <button type="reset" class="btn">🔄 Zurücksetzen</button>
+                </div>
+            </form>
+
+            <div id="feedback-success" class="feedback-message success" style="display: none;">
+                ✅ Vielen Dank für dein Feedback! Wir haben deine Nachricht erhalten.
+            </div>
+            <div id="feedback-error" class="feedback-message error" style="display: none;">
+                ❌ Es gab ein Problem beim Senden. Bitte versuche es später erneut oder nutze eine der alternativen Kontaktmöglichkeiten.
+            </div>
+        </div>
+
+
+        <!-- Häufig gewünschte Features -->
+        <div class="feature-voting">
+            <h3>🗳️ Stimme für neue Features ab</h3>
+            <p>Welche Features wünschst du dir am meisten? (Mehrfachauswahl möglich)</p>
+
+            <div class="feature-list">
+                <label class="feature-item">
+                    <input type="checkbox" value="meal-planner">
+                    <span>📅 Wochenplan / Meal Planner</span>
+                </label>
+                <label class="feature-item">
+                    <input type="checkbox" value="shopping-list">
+                    <span>🛒 Automatische Einkaufsliste</span>
+                </label>
+                <label class="feature-item">
+                    <input type="checkbox" value="nutrition">
+                    <span>🥗 Erweiterte Nährwertangaben</span>
+                </label>
+                <label class="feature-item">
+                    <input type="checkbox" value="video">
+                    <span>🎥 Video-Anleitungen</span>
+                </label>
+                <label class="feature-item">
+                    <input type="checkbox" value="social">
+                    <span>👥 Social Features / Rezepte teilen</span>
+                </label>
+                <label class="feature-item">
+                    <input type="checkbox" value="voice">
+                    <span>🎤 Sprachsteuerung beim Kochen</span>
+                </label>
+            </div>
+
+            <button class="btn btn-primary" onclick="submitFeatureVotes()">🗳️ Abstimmen</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 YummyGo</p>
+            <p><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a> |
+                <a href="sitemap.html">Sitemap</a></p>
+        </div>
+    </footer>
+
+    <script src="feedback.js"></script>
+</body>
+</html>
